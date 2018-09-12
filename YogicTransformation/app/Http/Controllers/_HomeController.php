@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -24,10 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        $options = [
-//            "navbar" => true,
-//        ];
-        $options = true;
-        return view('home')->with('options', $options);
+        return view('home');
     }
 }
