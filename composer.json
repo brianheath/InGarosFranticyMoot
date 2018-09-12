@@ -1,0 +1,11 @@
+{
+    "name": "vendor/yogic-transformation",
+    "description": "Description of project YogicTransformation.",
+    "authors": [
+        {
+            "name": "Brian Heath",
+            "email": "brian.c.heath@gmail.com"
+        }
+    ],
+    "require": {}
+}
