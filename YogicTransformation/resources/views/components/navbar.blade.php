@@ -1,3 +1,3 @@
-<div class="navbar navbar-default">
-    Navbar Contents
-</div>
+<nav class="navbar navbar-default">
+    <div class="navbar-text">Navbar Contents</div>
+</nav>
