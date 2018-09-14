@@ -1,0 +1,28 @@
+body .container-fluid {
+    padding-left: 0;
+}
+
+.container-fluid div.row.no-gutters div.col-sm-auto {
+    width: 220px;
+}
+
+.navbar.flex-column {
+    padding: 0;
+}
+
+.navbar.flex-column a.nav-link {
+    background-color: #f0eef0;
+    border: 1px solid #e0dee0;
+    margin: 1px 0;
+    padding: .8rem 2rem;
+    width: 100%;
+}
+
+.navbar.flex-column a.nav-link:hover {
+    background-color: #e0dee0;
+}
+
+.navbar.flex-column a.nav-link i.fas {
+    font-size: 1.3rem;
+    margin-right: 10px;
+}

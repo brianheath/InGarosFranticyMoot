@@ -16,7 +16,7 @@ class YtOptions extends Migration
             $table->increments('id');
             $table->string('site_url');
             $table->string('site_name');
-            $table->string('tag_line');
+            $table->string('site_tagline');
             $table->boolean('navbar');
             $table->boolean('header');
             $table->boolean('content');

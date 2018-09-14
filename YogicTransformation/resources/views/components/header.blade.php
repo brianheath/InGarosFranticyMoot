@@ -1,3 +1,3 @@
 <div class="header">
-    Header Contents
+    Header contents
 </div>

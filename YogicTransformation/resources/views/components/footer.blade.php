@@ -1,3 +1,3 @@
 <div class="footer">
-    Footer Contents
+    Footer Contents (can suck it!)
 </div>
