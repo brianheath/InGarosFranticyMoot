@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin - Page Options')
+@section('title', 'Admin - Components')
 
 @section('content')
 
 <h2>Components</h2>
 
-<form id="pageOptions" action="{{ url('admin/page-options') }}" method="post">
+<!--<form id="pageOptions" action="{{ url('admin/components') }}" method="post">
     {{ csrf_field() }}
     <div class="form-group">
         <input type="checkbox" id="check_navbar" name="checkNavBar" {{ $options['navbar'] ? 'checked' : '' }} />
@@ -27,6 +27,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
-</form>
+</form>-->
     
 @endsection

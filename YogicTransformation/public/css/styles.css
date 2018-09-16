@@ -26,3 +26,13 @@ body .container-fluid {
     font-size: 1.3rem;
     margin-right: 10px;
 }
+
+
+/*   /ADMIN/PAGES   */
+table.pages tr td {
+    cursor: default;
+}
+
+table.pages i.fas {
+    cursor: pointer;
+}

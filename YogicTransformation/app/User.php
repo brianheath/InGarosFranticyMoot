@@ -6,6 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public function posts()
+    {
+        $this->hasMany('App\Post');
+    }
+    
     /**
      * The attributes that are mass assignable.
      *

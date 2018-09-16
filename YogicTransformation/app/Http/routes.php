@@ -18,7 +18,7 @@
 //Route::auth();
 
 Route::get('/', 'HomeController@index');
+Route::controller('/admin', 'AdminController');
+Route::get('/{page_name}', 'HomeController@page');
 
-Route::controller('admin', 'AdminController');
 //Route::resource('/admin', 'AdminController');
-//Route::get('/admin/pageoptions', 'AdminController@pageOptions');

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'component',
+    'default' => 'components',
 
     /*
     |--------------------------------------------------------------------------
@@ -48,9 +48,9 @@ return [
             'root' => storage_path('app'),
         ],
         
-        'component' => [
+        'components' => [
             'driver' => 'local',
-            'root' => storage_path('app/component'),
+            'root' => storage_path('app/components'),
         ],
 
         'public' => [

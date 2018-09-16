@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests;
-use App\option;
+use App\Option;
+use App\Page;
+use App\Post;
 
 class AdminController extends BaseController
 {
@@ -16,12 +19,12 @@ class AdminController extends BaseController
         return view('admin.index', ['options' => $this->options]);
     }
 
-    public function getPageOptions()
+    public function getComponents()
     {
-        return view('admin.page_options', ['options' => $this->options]);
+        return view('admin.components', ['options' => $this->options]);
     }
     
-    public function postPageOptions(Request $request)
+    public function postComponents(Request $request)
     {
         // Getting values implicitly to exclude any extras
         $navBar = $request->input('checkNavBar');
@@ -32,9 +35,14 @@ class AdminController extends BaseController
         $this->options['header'] = isset($header) ? 1 : 0;
         $this->options['footer'] = isset($footer) ? 1 : 0;
         
+        // TODO:  Validate the data?
+        Storage::disk('components')->put('navbar.blade.php', $request->input('navbarCode'));
+        Storage::disk('components')->put('header.blade.php', $request->input('headerCode'));
+        Storage::disk('components')->put('footer.blade.php', $request->input('footerCode'));
+        
         if ($this->saveOptions())
         {
-            return view('admin.page_options', ['options' => $this->options]);
+            return view('admin.components', ['options' => $this->options]);
         }
         else
         {
@@ -71,15 +79,45 @@ class AdminController extends BaseController
         
     }
     
-    public function getEmailSetup()
+    public function getEmail()
     {
         return view('admin.email_setup', ['options' => $this->options]);
+    }
+    
+    public function getPages()
+    {
+        $pages = Page::all();
+        return view('admin.pages', ['pages' => $pages]);
+    }
+    
+    public function getReports()
+    {
+        return view('admin.reports', ['options' => $this->options]);
     }
     
     public function getStyling()
     {
         return view('admin.styling', ['options' => $this->options]);
     }
+    
+    
+    /**
+     * PUT methods
+     */
+    
+    public function putAddpage(Request $request)
+    {
+        $page = new Page();
+        $page->title = $request->input('page-title');
+        $page->url = $request->input('page-url');
+        $page->navbar = 1;
+        $page->header_id = 1;
+        $page->footer_id = 1;
+        $page->save();
+        
+        return $page;
+    }
+    
     
     
 
