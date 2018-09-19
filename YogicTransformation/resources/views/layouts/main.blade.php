@@ -13,22 +13,8 @@
 
 <body>
     
-    @if($options['navbar'])
-        @include('components.navbar')
-    @endif
-    
-    @if($options['header'])
-        @include('components.header')
-    @endif
-    
-    @if($options['content'])
-        @section('content')
-            @show
-    @endif
-    
-    @if($options['footer'])
-        @include('components.footer')
-    @endif
+    @section('content')
+        @show
     
 </body>
 </html>

@@ -4,17 +4,17 @@
 
 @section('content')
 @foreach ($page->posts as $post)
-    <div class="content">
+    <div class="container">
         <h1>{{ $post['title'] }}</h1>
         
-        @if ($post['user_id'])
+        @if ($post['show_author'])
         <h4>by {{ $post->user['name'] }}</h4>
         @endif
-
+        
         @if ($post['show_date'])
         <h5>{{ $post['updated_at'] }}</h5>
         @endif
-
+        
         <div class="container">
             {{ $post['body'] }}
         </div>
