@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests;
-use App\Option;
+use App\Footer;
+use App\Header;
 use App\Page;
 use App\Post;
+use App\User;
 
 class AdminController extends BaseController
 {
@@ -23,6 +25,75 @@ class AdminController extends BaseController
     {
         return view('admin.components', ['options' => $this->options]);
     }
+    
+    public function getEmail()
+    {
+        return view('admin.email_setup', ['options' => $this->options]);
+    }
+    
+    public function getPages()
+    {
+        $pages = Page::all();
+        return view('admin.pages', ['pages' => $pages]);
+    }
+    
+    public function getPosts() {
+        $posts = Post::all();
+        return view('admin.posts', ['posts' => $posts]);
+    }
+    
+    public function getReports()
+    {
+        return view('admin.reports', ['options' => $this->options]);
+    }
+    
+    public function getSiteConfig()
+    {
+        return view('admin.site_config', ['options' => $this->options]);
+    }
+    
+    public function getStyling()
+    {
+        return view('admin.styling', ['options' => $this->options]);
+    }
+    
+    public function getUsers()
+    {
+        return view('admin.users', ['users' => User::all()]);
+    }
+    
+    
+    /**
+     * PUT methods
+     */
+    
+    public function putAddpage(Request $request)
+    {
+        $header = new Header(['markup' => $request->input('header-code')]);
+        $footer = new Footer(['markup' => $request->input('footer-code')]);
+        $header->save();
+        $footer->save();
+        $navbar = $request->input('check-navbar') !== null ? 1 : 0;
+        
+        $page = new Page();
+        $page->title = $request->input('page-title');
+        $page->url = $request->input('page-url');
+        $page->navbar = $navbar;
+        $page->header_id = $header->id;
+        $page->footer_id = $footer->id;
+        $page->save();
+        
+        $page->header()->save($header);
+        $page->footer()->save($footer);
+        
+        return $page;
+    }
+    
+    
+    
+    /**
+     * POST methods
+     */
     
     public function postComponents(Request $request)
     {
@@ -50,9 +121,9 @@ class AdminController extends BaseController
         }
     }
     
-    public function getSiteConfig()
+    public function postGeneralConfig(Request $request)
     {
-        return view('admin.site_config', ['options' => $this->options]);
+        
     }
     
     public function postSiteConfig(Request $request)
@@ -79,44 +150,10 @@ class AdminController extends BaseController
         
     }
     
-    public function getEmail()
-    {
-        return view('admin.email_setup', ['options' => $this->options]);
-    }
-    
-    public function getPages()
-    {
-        $pages = Page::all();
-        return view('admin.pages', ['pages' => $pages]);
-    }
-    
-    public function getReports()
-    {
-        return view('admin.reports', ['options' => $this->options]);
-    }
-    
-    public function getStyling()
-    {
-        return view('admin.styling', ['options' => $this->options]);
-    }
     
     
-    /**
-     * PUT methods
-     */
     
-    public function putAddpage(Request $request)
-    {
-        $page = new Page();
-        $page->title = $request->input('page-title');
-        $page->url = $request->input('page-url');
-        $page->navbar = 1;
-        $page->header_id = 1;
-        $page->footer_id = 1;
-        $page->save();
-        
-        return $page;
-    }
+    
     
     
     
