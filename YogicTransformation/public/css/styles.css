@@ -36,3 +36,24 @@ table.pages tr td {
 table.pages i.fas {
     cursor: pointer;
 }
+
+label[for="header_code"],
+label[for="footer_code"] {
+    margin-top: 20px;
+}
+
+form#new_page button {
+    margin-top: 40px;
+}
+
+.modal-fluid {
+    width: 90%;
+    max-width: 90%;
+}
+
+.modal iframe {
+    border: none;
+    height: 800px;
+    width: 100%;
+    overflow: hidden;
+}
