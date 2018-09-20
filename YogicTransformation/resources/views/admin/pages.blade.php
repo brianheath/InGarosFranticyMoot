@@ -11,6 +11,7 @@
     <a class="nav-link nav-item" data-toggle="tab" role="tab" href="#add_page">Add a New Page</a>
 </nav>
 
+
 <div class="tab-content">
     <div class="tab-pane fade" role="tabpanel" id="add_page">
         <form id="new_page" action="{{ url('admin/addpage') }}" method="post">
@@ -60,12 +61,12 @@
                 </tr>
             </thead>
             @foreach ($pages as $page)
-                <tr>
+                <tr id="page_{{ $page['id'] }}_row">
                     <td id="page_{{ $page['id'] }}_title">{{ $page['title'] }}</td>
                     <td id="page_{{ $page['id'] }}_url">/{{ $page['url'] }}</td>
                     <td>{{ $page['created_at'] }}</td>
                     <td>{{ $page['enabled'] == 1 ? 'Published' : 'Not Published' }}</td>
-                    <td id="page_{{ $page['id'] }}">
+                    <td page-id="{{ $page['id'] }}">
                         <i class="fas fa-eye" action="view" data-toggle="modal" data-target="#view_modal"></i>
                         <i class="fas fa-edit" action="edit"></i>
                         <i class="fas fa-trash-alt" action="delete"></i>

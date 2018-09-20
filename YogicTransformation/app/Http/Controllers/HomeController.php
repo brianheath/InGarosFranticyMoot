@@ -11,7 +11,12 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        return view('home', ['options' => $this->options]);
+        // TODO: Make sure page exists
+        $page = Page::find($this->options['homepage_id']);
+        return view('page', [
+            'options' => $this->options,
+            'page' => $page,
+        ]);
     }
     
     public function page($page_id) {
@@ -21,8 +26,7 @@ class HomeController extends BaseController
         
         if (!$page)
         {
-            // If the page doesn't exist, show a 404
-            return "PAGE NOT FOUND 404 ERROR";
+            abort(404);
         }
         
         return view('page', [

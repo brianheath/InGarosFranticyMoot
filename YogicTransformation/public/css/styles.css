@@ -57,3 +57,13 @@ form#new_page button {
     width: 100%;
     overflow: hidden;
 }
+
+
+/*  /ADMIN/INDEX    */
+h5 {
+    margin-top: 20px;
+}
+
+.dropdown + button[type=submit] {
+    margin-top: 40px;
+}

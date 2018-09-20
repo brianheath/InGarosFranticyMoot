@@ -16,7 +16,7 @@ class BaseController extends Controller
 //        $this->middleware('auth');
         
         // Get options for the website
-        $this->options = option::latest()->first();
+        $this->options = Option::latest()->first();
         unset($this->options['id']);
         unset($this->options['created_at']);
         unset($this->options['updated_at']);
@@ -24,14 +24,11 @@ class BaseController extends Controller
     
     protected function saveOptions() {
         // Creating a new option entry to keep a record of the changes
-         $options = new option;
-         $options->navbar = $this->options['navbar'];
-         $options->header = $this->options['header'];
-         $options->footer = $this->options['footer'];
+         $options = new Option;
+         $options->homepage_id = $this->options['homepage_id'];
          $options->site_url = $this->options['site_url'];
          $options->site_name = $this->options['site_name'];
          $options->site_tagline = $this->options['site_tagline'];
-         $options->content = 1;
          return $options->save();
     }
 

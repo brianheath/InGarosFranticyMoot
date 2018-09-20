@@ -18,7 +18,13 @@
 //Route::auth();
 
 Route::get('/', 'HomeController@index');
+
+Route::delete('/admin/{type}/{id}', 'AdminController@destroy');
+Route::put('/admin/page/{id}', 'AdminController@updatePage');
+Route::get('/admin/edit_page/{id}', 'AdminController@editPage');
+
 Route::controller('/admin', 'AdminController');
+
 Route::get('/{page_name}', 'HomeController@page');
 
 //Route::resource('/admin', 'AdminController');

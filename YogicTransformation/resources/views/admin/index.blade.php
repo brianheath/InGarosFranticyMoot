@@ -6,21 +6,23 @@
 
 <h2>General Options</h2>
 
+<h5>Homepage</h5>
+<div class="dropdown">
+    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+        Select the default (home) page
+    </button>
+    <small class="form-text text-muted">The home page will be shown regardless of its Published status</small>
+    <div class="dropdown-menu">
+        @foreach ($pages as $page)
+        <a class="dropdown-item" href="#" page="{{ $page['id'] }}">"{{ $page['title'] }}"</a>
+        @endforeach
+    </div>
+</div>
+
 <form style="margin: 20px 0 20px 0;" action="{{ url('admin/general-options') }}" method="post">
     {{ csrf_field() }}
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-            Select the default (home) page
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Wonderful</a>
-            <a class="dropdown-item" href="#">AWesome</a>
-            <a class="dropdown-item" href="#">Nifty</a>
-            <a class="dropdown-item" href="#">Coolio</a>
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
+    <input type="hidden" name="homepage-id" value="{{ $options['homepage_id'] }}" />
+    <button type="submit" class="btn btn-primary">Save Options</button>
 </form>
 
 @endsection

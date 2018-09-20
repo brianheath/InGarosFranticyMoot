@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-use App\Http\Requests;
+//use App\Http\Requests;
 use App\Footer;
 use App\Header;
 use App\Page;
@@ -18,7 +17,11 @@ class AdminController extends BaseController
     
     public function getIndex()
     {
-        return view('admin.index', ['options' => $this->options]);
+        $pages = Page::all();
+        return view('admin.index', [
+            'options' => $this->options, 
+            'pages' => $pages,
+        ]);
     }
 
     public function getComponents()
@@ -37,7 +40,8 @@ class AdminController extends BaseController
         return view('admin.pages', ['pages' => $pages]);
     }
     
-    public function getPosts() {
+    public function getPosts()
+    {
         $posts = Post::all();
         return view('admin.posts', ['posts' => $posts]);
     }
@@ -60,6 +64,17 @@ class AdminController extends BaseController
     public function getUsers()
     {
         return view('admin.users', ['users' => User::all()]);
+    }
+    
+    
+    public function editPage($id)
+    {
+        $page = Page::find($id);
+        
+        return view('admin.edit_page', [
+            'page' => $page,
+            'options' => $this->options,
+        ]);
     }
     
     
@@ -86,7 +101,29 @@ class AdminController extends BaseController
         $page->header()->save($header);
         $page->footer()->save($footer);
         
-        return $page;
+        return redirect()->action('AdminController@getPages')->with('status', 'Page added');
+    }
+    
+    public function updatePage($id, Request $request)
+    {
+        $navbar = $request->input('check-navbar') !== null ? 1 : 0;
+        $published = $request->input('check-publish') !== null ? 1 : 0;
+        
+        $page = Page::find($id);
+        $page->title = $request->input('page-title');
+        $page->url = $request->input('page-url');
+        $page->navbar = $navbar;
+        $page->enabled = $published;
+        $page->save();
+        
+        $header = Header::where('page_id', $id)->first();
+        $footer = Footer::where('page_id', $id)->first();
+        $header->markup = $request->input('header-code');
+        $footer->markup = $request->input('footer-code');
+        $header->save();
+        $footer->save();
+        
+        return redirect()->action('AdminController@editPage', ['id' => $id]);
     }
     
     
@@ -121,9 +158,22 @@ class AdminController extends BaseController
         }
     }
     
-    public function postGeneralConfig(Request $request)
+    public function postGeneralOptions(Request $request)
     {
+        $this->options['homepage_id'] = $request->input('homepage-id');
         
+        if ($this->saveOptions())
+        {
+            $pages = Page::where('enabled', 1)->get();
+            return view('admin.index', [
+                'options' => $this->options,
+                'pages' => $pages,
+            ]);
+        }
+        else
+        {
+            die('There was a problem saving to the database');
+        }
     }
     
     public function postSiteConfig(Request $request)
@@ -151,6 +201,10 @@ class AdminController extends BaseController
     }
     
     
+    
+    /**
+     * DELETE methods
+     */
     
     
     
@@ -219,8 +273,28 @@ class AdminController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($type, $id)
     {
-        //
+        switch ($type) {
+            case 'page':
+                $response = Page::destroy($id);
+                break;
+            case 'post':
+                $response = Post::destroy($id);
+                break;
+            case 'user':
+                $response = User::destroy($id);
+                break;
+            case 'footer':
+                $response = Footer::destroy($id);
+                break;
+            case 'header':
+                $response = Header::destroy($id);
+                break;
+            default:
+                break;
+        }
+        
+        return json_encode($response);
     }
 }
