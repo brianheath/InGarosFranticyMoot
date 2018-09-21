@@ -29,7 +29,7 @@
             {!! $page->header['markup'] !!}
         </div>
 
-        <label>Code</label>
+        <label>HTML Code</label>
         <textarea class="form-control" id="header_code" name="header-code" rows="6">{{ $page->header['markup'] }}</textarea>
         
         <button type="button" class="btn btn-light" id="update_header">Refresh Header</button>
@@ -41,7 +41,7 @@
             {!! $page->footer['markup'] !!}
         </div>
 
-        <label>Code</label>
+        <label>HTML Code</label>
         <textarea class="form-control" id="footer_code" name="footer-code" rows="6">{{ $page->footer['markup'] }}</textarea>
         
         <button type="button" class="btn btn-light" id="update_footer">Refresh Footer</button>
@@ -70,7 +70,12 @@
     
     <div class="form-group">
         <input type="checkbox" class="form-check-input" name="check-publish" id="check_publish" {{ $page['enabled'] ? 'checked' : '' }} />
-        <label for="check_publish">Publish this page <small class="form-text text-muted">(enable it for view)</small></label>
+        <label for="check_publish">Publish this page</label>
+    </div>
+    
+    <div class="form-group">
+        <input type="checkbox" class="form-check-input" name="check-homepage" id="check_homepage" {{ ($page['id'] == $options['homepage_id']) ? 'checked' : '' }} />
+        <label for="check_homepage">Set this as the Homepage</label>
     </div>
     
     <div class="container-fluid">

@@ -108,6 +108,7 @@ class AdminController extends BaseController
     {
         $navbar = $request->input('check-navbar') !== null ? 1 : 0;
         $published = $request->input('check-publish') !== null ? 1 : 0;
+        $homepage_id = $request->input('check-homepage') !== null ? $id : null;
         
         $page = Page::find($id);
         $page->title = $request->input('page-title');
@@ -122,6 +123,12 @@ class AdminController extends BaseController
         $footer->markup = $request->input('footer-code');
         $header->save();
         $footer->save();
+        
+        if ($homepage_id !== null)
+        {
+            $this->options['homepage_id'] = $homepage_id;
+            $this->saveOptions();
+        }
         
         return redirect()->action('AdminController@editPage', ['id' => $id]);
     }

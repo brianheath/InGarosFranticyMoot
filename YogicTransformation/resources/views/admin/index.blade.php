@@ -11,7 +11,7 @@
     <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
         Select the default (home) page
     </button>
-    <small class="form-text text-muted">The home page will be shown regardless of its Published status</small>
+    <small class="form-text text-muted">The home page will be shown regardless of the page's Published status</small>
     <div class="dropdown-menu">
         @foreach ($pages as $page)
         <a class="dropdown-item" href="#" page="{{ $page['id'] }}">"{{ $page['title'] }}"</a>

@@ -24,12 +24,12 @@ class BaseController extends Controller
     
     protected function saveOptions() {
         // Creating a new option entry to keep a record of the changes
-         $options = new Option;
-         $options->homepage_id = $this->options['homepage_id'];
-         $options->site_url = $this->options['site_url'];
-         $options->site_name = $this->options['site_name'];
-         $options->site_tagline = $this->options['site_tagline'];
-         return $options->save();
+        $options = new Option;
+        $options->homepage_id = $this->options['homepage_id'];
+        $options->site_url = $this->options['site_url'];
+        $options->site_name = $this->options['site_name'];
+        $options->site_tagline = $this->options['site_tagline'];
+        return $options->save();
     }
 
 }
