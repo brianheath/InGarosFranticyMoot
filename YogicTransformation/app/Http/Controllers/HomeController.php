@@ -13,7 +13,14 @@ class HomeController extends BaseController
     {
         // TODO: Make sure page exists
         $page = Page::find($this->options['homepage_id']);
+        
+        if (!$page)
+        {
+            abort(404);
+        }
+        
         return view('page', [
+            'links' => $this->links,
             'options' => $this->options,
             'page' => $page,
         ]);
@@ -30,6 +37,7 @@ class HomeController extends BaseController
         }
         
         return view('page', [
+            'links' => $this->links,
             'options' => $this->options,
             'page' => $page,
         ]);

@@ -102,6 +102,19 @@
                 <h5 class="modal-title"></h5>
                 <a type="button" class="close" data-dismiss="modal"><span>&times;</span></a>
             </div>
+            <div class="modal-navbar">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" style="cursor: default;">{{ $options['nav_brand'] }}</a>
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="{{ url('/') }}">Home</a>
+
+                        @foreach ($links as $link)
+                        <a class="nav-item nav-link" href="{{ $link['url'] }}">{{ $link['title'] }}</a>
+                        @endforeach
+
+                    </div>
+                </nav>
+            </div>
             <div class="modal-body"></div>
         </div>
     </div>

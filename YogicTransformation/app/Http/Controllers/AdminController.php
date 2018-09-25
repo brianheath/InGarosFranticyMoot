@@ -72,8 +72,9 @@ class AdminController extends BaseController
         $page = Page::find($id);
         
         return view('admin.edit_page', [
-            'page' => $page,
+            'links' => $this->links,
             'options' => $this->options,
+            'page' => $page,
         ]);
     }
     
@@ -168,6 +169,7 @@ class AdminController extends BaseController
     public function postGeneralOptions(Request $request)
     {
         $this->options['homepage_id'] = $request->input('homepage-id');
+        $this->options['nav_brand'] = $request->input('nav-brand');
         
         if ($this->saveOptions())
         {

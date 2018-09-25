@@ -17,6 +17,7 @@
     
     @if($page['navbar'])
         @section('navbar')
+            @show
     @endif
     
     {!! $page->header['markup'] !!}
