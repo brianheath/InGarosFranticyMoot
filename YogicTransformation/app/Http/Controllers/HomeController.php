@@ -28,7 +28,7 @@ class HomeController extends BaseController
     
     public function page($page_id) {
         $page = Page::where('url', $page_id)
-                ->where('enabled', 1)
+                ->where('published', 1)
                 ->first();
         
         if (!$page)

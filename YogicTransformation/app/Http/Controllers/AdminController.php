@@ -40,10 +40,20 @@ class AdminController extends BaseController
         return view('admin.pages', ['pages' => $pages]);
     }
     
+    public function getPost($id)
+    {
+        return json_encode(Post::find($id));
+    }
+    
     public function getPosts()
     {
         $posts = Post::all();
-        return view('admin.posts', ['posts' => $posts]);
+        $pages = Page::all(['id', 'title']);
+        
+        return view('admin.posts', [
+            'posts' => $posts,
+            'pages' => $pages,
+        ]);
     }
     
     public function getReports()
@@ -70,6 +80,7 @@ class AdminController extends BaseController
     public function editPage($id)
     {
         $page = Page::find($id);
+        $page['is_homepage'] = $page['id'] == $this->options['homepage_id'] ? true : false;
         
         return view('admin.edit_page', [
             'links' => $this->links,
@@ -105,6 +116,25 @@ class AdminController extends BaseController
         return redirect()->action('AdminController@getPages')->with('status', 'Page added');
     }
     
+    public function putAddpost(Request $request)
+    {
+        $show_date = $request->input('check-show-date') !== null ? 1 : 0;
+        $show_author = $request->input('check-show-author') !== null ? 1 : 0;
+        $published = $request->input('check-publish') !== null ? 1 : 0;
+        
+        $post = new Post();
+        $post->title = $request->input('post-title');
+        $post->body = $request->input('post-body');
+        $post->page_id = $request->input('parent-page-id');
+        $post->user_id = 1; // TODO: Get the user id of the person that is logged in
+        $post->show_date = $show_date;
+        $post->show_author = $show_author;
+        $post->published = $published;
+        $post->save();
+        
+        return redirect()->action('AdminController@getPosts');
+    }
+    
     public function updatePage($id, Request $request)
     {
         $navbar = $request->input('check-navbar') !== null ? 1 : 0;
@@ -115,7 +145,7 @@ class AdminController extends BaseController
         $page->title = $request->input('page-title');
         $page->url = $request->input('page-url');
         $page->navbar = $navbar;
-        $page->enabled = $published;
+        $page->published = $published;
         $page->save();
         
         $header = Header::where('page_id', $id)->first();
@@ -173,7 +203,7 @@ class AdminController extends BaseController
         
         if ($this->saveOptions())
         {
-            $pages = Page::where('enabled', 1)->get();
+            $pages = Page::where('published', 1)->get();
             return view('admin.index', [
                 'options' => $this->options,
                 'pages' => $pages,

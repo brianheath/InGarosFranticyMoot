@@ -4,21 +4,40 @@ $(document).ready(function() {
      * Admin - Pages
      */
     
-    /* Manage Pages */
+    /* Manage Items */
     $('i.fas').click(function() {
         var action = $(this).attr('action');
-        var pageId = $(this).parent('td').attr('page-id');
-        var title = $('#page_' + pageId + '_title').text();
+        var itemId = $(this).parent('td').attr('item-id');
+        var title = $('#item_' + itemId + '_title').text();
         var token = $('form [name=_token]').attr('value');
-        var url = $('#page_' + pageId + '_url').text();
+        var itemType = $('td[item-type]').attr('item-type');
         
-        if (action === 'view') {
+        if (action === 'view' && itemType === 'page') {
+            var url = $('#item_' + itemId + '_url').text();
             $('.modal-title').text(title);
             $('iframe').attr('src', url);
         }
+        else if (action === 'view' && itemType === 'post') {
+            var author = $('#item_' + itemId + '_author').text();
+            var postDate = $('#item_' + itemId + '_date').text();
+            
+            $.getJSON('/admin/' + itemType + '/' + itemId, function(data) {
+                $('#preview_post h1').text(title);
+                $('#preview_post h4').text('by ' + author).show();
+                $('#preview_post .modal-body h5').text(postDate).show();
+                $('#preview_post .body').html(data.body);
+                
+                if (!data.show_author)
+                    $('#preview_post h4').hide();
+                
+                if (!data.show_date)
+                    $('#preview_post .modal-body h5').hide();
+            });
+            
+        }
         else if (action === 'edit') {
             // Edit the page
-            window.location.href = '/admin/edit_page/' + pageId;
+            window.location.href = '/admin/edit_' + itemType + '/' + itemId;
         }
         else if (action === 'delete') {
             // Go get tacos, obviously.
@@ -27,12 +46,12 @@ $(document).ready(function() {
             }
 
             $.ajax({
-                url:'/admin/page/' + pageId,
+                url:'/admin/' + itemType + '/' + itemId,
                 method: 'DELETE',
                 type: 'DELETE',
                 data: {_method: 'delete', _token: token},
                 success: function() {
-                    $('#page_' + pageId + '_row').remove();
+                    $('#item_' + itemId + '_row').remove();
                 },
                 error: function(data) {
                     console.log(data.responseText);
@@ -95,6 +114,38 @@ $(document).ready(function() {
     
     
     /**
+     * Admin - Posts
+     */
+    
+    /* Add Post */
+    $('.preview-post').on('click', function() {
+        var author = "TEMP";
+        var today = new Date().toLocaleDateString();
+        
+        $('#preview_post h1').text($('#post_title').val());
+        $('#preview_post h4').text('by ' + author).show();
+        $('#preview_post .modal-body h5').text(today).show();
+        $('#preview_post .body').html($('#post_body').val());
+
+        if (!$('#check_author').is(':checked'))
+            $('#preview_post h4').hide();
+
+        if (!$('#check_show_date').is(':checked'))
+            $('#preview_post .modal-body h5').hide();
+    });
+    
+    /* Dropdown */
+    $('.add-post-dropdown .dropdown-item').click(function() {
+        var title = $(this).text();
+        var pageId = $(this).attr('page');
+        
+        $('.dropdown button').text(title);
+        $('input[name=parent-page-id]').attr('value', pageId);
+    });
+    
+    
+    
+    /**
      * Admin - General Options
      */
     
@@ -103,11 +154,11 @@ $(document).ready(function() {
         var pageId = $('input[name=homepage-id]').attr('value');
         var pageTitle = $('a.dropdown-item[page=' + pageId + ']').text();
         
-        $('button.dropdown-toggle').text(pageTitle);
+        $('.homepage-dropdown button.dropdown-toggle').text(pageTitle);
     })();
     
     /* Dropdown */
-    $('.dropdown-item').click(function() {
+    $('.homepage-dropdown .dropdown-item').click(function() {
         var homepage = $(this).text();
         var pageId = $(this).attr('page');
         

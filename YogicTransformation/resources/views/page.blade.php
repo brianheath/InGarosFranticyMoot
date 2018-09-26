@@ -18,6 +18,7 @@
 
 @section('content')
 @foreach ($page->posts as $post)
+@if ($post['published'])
     <div class="container">
         <h1>{{ $post['title'] }}</h1>
         
@@ -26,12 +27,13 @@
         @endif
         
         @if ($post['show_date'])
-        <h5>{{ $post['updated_at'] }}</h5>
+        <h5>{{ date('M jS, Y', strtotime($post['updated_at'])) }}</h5>
         @endif
         
         <div class="container">
-            {{ $post['body'] }}
+            {!! $post['body'] !!}
         </div>
     </div>
+@endif
 @endforeach
 @endsection

@@ -69,16 +69,20 @@
     </div>
     
     <div class="form-group">
-        <input type="checkbox" class="form-check-input" name="check-publish" id="check_publish" {{ $page['enabled'] ? 'checked' : '' }} />
+        <input type="checkbox" class="form-check-input" name="check-publish" id="check_publish" {{ $page['published'] ? 'checked' : '' }} />
         <label for="check_publish">Publish this page</label>
     </div>
     
     <div class="form-group">
-        <input type="checkbox" class="form-check-input" name="check-homepage" id="check_homepage" {{ ($page['id'] == $options['homepage_id']) ? 'checked' : '' }} />
+        <input type="checkbox" class="form-check-input" name="check-homepage" id="check_homepage" {{ $page['is_homepage'] ? 'checked disabled' : '' }} />
         <label for="check_homepage">Set this as the Homepage</label>
+        
+        @if ($page['is_homepage'])
+        <small class="form-text text-muted">The site needs a homepage.&nbsp; Edit another page or visit General Options to change this.</small>
+        @endif
     </div>
     
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 40px;">
         <div class="row">
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary">Save Page Changes</button>

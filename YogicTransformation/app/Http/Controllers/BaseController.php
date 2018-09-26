@@ -24,7 +24,7 @@ class BaseController extends Controller
         unset($this->options['updated_at']);
         
         // Get pages for the navbar
-        $this->links = Page::where('enabled', '=', '1')
+        $this->links = Page::where('published', '=', '1')
                         ->get(['url', 'title']);
     }
     

@@ -8,7 +8,7 @@
 
 <h6>Select Homepage</h6>
 <div class="form-group">
-    <div class="dropdown">
+    <div class="dropdown homepage-dropdown">
         <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
             Select the default (home) page
         </button>
