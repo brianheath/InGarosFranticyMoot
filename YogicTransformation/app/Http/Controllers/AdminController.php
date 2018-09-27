@@ -200,6 +200,7 @@ class AdminController extends BaseController
     {
         $this->options['homepage_id'] = $request->input('homepage-id');
         $this->options['nav_brand'] = $request->input('nav-brand');
+        $this->options['full_width'] = $request->input('full-width') !== null ? 1 : 0;
         
         if ($this->saveOptions())
         {

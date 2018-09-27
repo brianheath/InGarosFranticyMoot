@@ -19,7 +19,7 @@
 @section('content')
 @foreach ($page->posts as $post)
 @if ($post['published'])
-    <div class="container">
+    <div class="container-fluid">
         <h1>{{ $post['title'] }}</h1>
         
         @if ($post['show_author'])
@@ -30,7 +30,7 @@
         <h5>{{ date('M jS, Y', strtotime($post['updated_at'])) }}</h5>
         @endif
         
-        <div class="container">
+        <div class="container-fluid">
             {!! $post['body'] !!}
         </div>
     </div>

@@ -9,6 +9,12 @@ use App\Page;
 
 class HomeController extends BaseController
 {
+    public function __construct() {
+        parent::__construct();
+        $this->options['container_class'] = $this->options['full_width'] 
+                ? 'container-fluid' : 'container';
+    }
+    
     public function index()
     {
         // TODO: Make sure page exists
