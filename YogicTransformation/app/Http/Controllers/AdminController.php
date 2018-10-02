@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Bican\Roles\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 //use App\Http\Requests;
 use App\Footer;
@@ -13,7 +15,29 @@ use App\User;
 
 class AdminController extends BaseController
 {
-    // TODO: Make sure the person is supposed to be here!
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->middleware('auth');
+    }
+    
+    public function getRarr()
+    {
+//        $role = Role::create([
+//            'name' => '',
+//            'slug' => '',
+//            'description' => '',
+//            'level' => ,
+//        ]);
+//        return $role;
+        
+//        $user = User::find(1);
+//        $user->attachRole(1);
+//        return $user;
+        
+//        return Auth::user()->is('admin') ? "Yeah, yay!" : "Nooooooooooope.";
+    }
     
     public function getIndex()
     {
@@ -204,11 +228,7 @@ class AdminController extends BaseController
         
         if ($this->saveOptions())
         {
-            $pages = Page::where('published', 1)->get();
-            return view('admin.index', [
-                'options' => $this->options,
-                'pages' => $pages,
-            ]);
+            return redirect()->back();
         }
         else
         {
@@ -246,6 +266,37 @@ class AdminController extends BaseController
      * DELETE methods
      */
     
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $type
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($type, $id)
+    {
+        switch ($type) {
+            case 'page':
+                $response = Page::destroy($id);
+                break;
+            case 'post':
+                $response = Post::destroy($id);
+                break;
+            case 'user':
+                $response = User::destroy($id);
+                break;
+            case 'footer':
+                $response = Footer::destroy($id);
+                break;
+            case 'header':
+                $response = Header::destroy($id);
+                break;
+            default:
+                break;
+        }
+        
+        return json_encode($response);
+    }
     
     
     
@@ -307,34 +358,4 @@ class AdminController extends BaseController
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($type, $id)
-    {
-        switch ($type) {
-            case 'page':
-                $response = Page::destroy($id);
-                break;
-            case 'post':
-                $response = Post::destroy($id);
-                break;
-            case 'user':
-                $response = User::destroy($id);
-                break;
-            case 'footer':
-                $response = Footer::destroy($id);
-                break;
-            case 'header':
-                $response = Header::destroy($id);
-                break;
-            default:
-                break;
-        }
-        
-        return json_encode($response);
-    }
 }

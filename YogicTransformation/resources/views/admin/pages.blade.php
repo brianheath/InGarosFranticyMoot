@@ -25,7 +25,6 @@
             <div class="form-group">
                 <label for="page_url">URL to access the page</label>
                 <input class="form-control" name="page-url" id="page_url" placeholder="This is what you see in the address bar" />
-                <!--<small class="form-text text-muted">NOTE: All new pages are disabled from view until enabled manually</small>-->
             </div>
 
             <div class="form-check">
@@ -36,13 +35,13 @@
             <div class="form-check">
                 <label for="header_code">Header Code</label>
                 <textarea class="form-control" name="header-code" id="header_code" rows="4"></textarea>
-                <small class="form-text text-muted">Leave blank for no header on this page</small>
+                <small class="form-text text-muted">Leave blank for no header on this page.&nbsp; You can edit this later.</small>
             </div>
 
             <div class="form-check">
                 <label for="footer_code">Footer Code</label>
                 <textarea class="form-control" name="footer-code" id="footer_code" rows="4"></textarea>
-                <small class="form-text text-muted">Leave blank for no footer on this page</small>
+                <small class="form-text text-muted">Leave blank for no footer on this page.&nbsp; You can edit this later.</small>
             </div>
 
             <button type="submit" class="btn btn-primary">Add this page</button>
