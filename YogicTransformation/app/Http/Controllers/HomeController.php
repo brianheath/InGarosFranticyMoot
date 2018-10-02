@@ -17,7 +17,6 @@ class HomeController extends BaseController
     
     public function index()
     {
-        // TODO: Make sure page exists
         $page = Page::find($this->options['homepage_id']);
         
         if (!$page)
