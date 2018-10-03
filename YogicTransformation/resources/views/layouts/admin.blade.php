@@ -26,14 +26,15 @@
             <div class="col-sm-auto">
                 <nav class="navbar flex-column">
                     <a class="nav-link" href="{{ url('admin/') }}"><i class="fas fa-cog"></i>General&nbsp;Options</a>
+                    <a class="nav-link" href="{{ url('admin/site-config') }}"><i class="fas fa-globe"></i>Site&nbsp;Config</a>
                     <a class="nav-link" href="{{ url('admin/pages') }}"><i class="fas fa-file-alt"></i>Pages</a>
                     <a class="nav-link" href="{{ url('admin/posts') }}"><i class="fas fa-pencil-alt"></i>Posts</a>
                     <a class="nav-link" href="{{ url('admin/users') }}"><i class="fas fa-users"></i>Users</a>
-                    <a class="nav-link" href="{{ url('admin/reports') }}"><i class="fas fa-chart-bar"></i>Reports</a>
-                    <a class="nav-link" href="{{ url('admin/components') }}"><i class="fas fa-cubes"></i>Components</a>
+                    <a class="nav-link" href="{{ url('admin/permissions') }}"><i class="fas fa-user-lock"></i>Permissions</a>
                     <a class="nav-link" href="{{ url('admin/styling') }}"><i class="fas fa-palette"></i>Styling</a>
                     <a class="nav-link" href="{{ url('admin/email') }}"><i class="fas fa-envelope"></i>Email</a>
-                    <a class="nav-link" href="{{ url('admin/site-config') }}"><i class="fas fa-globe"></i>Site&nbsp;Config</a>
+                    <a class="nav-link" href="{{ url('admin/components') }}"><i class="fas fa-cubes"></i>Components</a>
+                    <a class="nav-link" href="{{ url('admin/reports') }}"><i class="fas fa-chart-bar"></i>Reports</a>
                 </nav>
             </div>
 

@@ -31,6 +31,7 @@ class BaseController extends Controller
     protected function saveOptions() {
         // Creating a new option entry to keep a record of the changes
         $options = new Option;
+        $options->allow_register = $this->options['allow_register'];
         $options->full_width = $this->options['full_width'];
         $options->homepage_id = $this->options['homepage_id'];
         $options->nav_brand = $this->options['nav_brand'];

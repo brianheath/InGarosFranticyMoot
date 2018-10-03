@@ -110,6 +110,28 @@ $(document).ready(function() {
     })();
     
     
+    
+    /**
+     * Admin - Users
+     */
+    
+    /* Add User */
+    $('.generate-password').click(function() {
+        var input = $(this).closest('div').find('input');
+        input.val(generatePw);
+    });
+    
+    /* Dropdown */
+    $('.dropdown .dropdown-item').click(function() {
+        var label = $(this).text();
+        var itemId = $(this).attr('item-id');
+        
+        $('.dropdown button').text(label);
+        $(this).closest('.form-group').find('input[type=hidden]').val(itemId);
+    });
+    
+    
+    
     /**
      * Admin - Posts
      */
@@ -131,15 +153,6 @@ $(document).ready(function() {
             $('#preview_post .modal-body h5').hide();
     });
     
-    /* Dropdown */
-    $('.add-post-dropdown .dropdown-item').click(function() {
-        var title = $(this).text();
-        var pageId = $(this).attr('page');
-        
-        $('.dropdown button').text(title);
-        $('input[name=parent-page-id]').attr('value', pageId);
-    });
-    
     
     
     /**
@@ -148,19 +161,39 @@ $(document).ready(function() {
     
     /* Set Homepage Button */
     (function() {
-        var pageId = $('input[name=homepage-id]').attr('value');
-        var pageTitle = $('a.dropdown-item[page=' + pageId + ']').text();
+        var itemId = $('input[name=homepage-id]').attr('value');
+        var label = $('a.dropdown-item[item-id=' + itemId + ']').text();
         
-        $('.homepage-dropdown button.dropdown-toggle').text(pageTitle);
+        $('.homepage-dropdown button.dropdown-toggle').text(label);
     })();
     
-    /* Dropdown */
-    $('.homepage-dropdown .dropdown-item').click(function() {
-        var homepage = $(this).text();
-        var pageId = $(this).attr('page');
+//    /* Dropdown */
+//    $('.homepage-dropdown .dropdown-item').click(function() {
+//        var homepage = $(this).text();
+//        var pageId = $(this).attr('page');
+//        
+//        $('.dropdown button').text(homepage);
+//        $('input[name=homepage-id]').attr('value', pageId);
+//    });
+   
+    
+    
+    
+    /**
+     * Admin Functions
+     */
+    
+    /* Generate Password */
+    function generatePw() {
+        var possible = 'abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
+        var newPassword = '';
         
-        $('.dropdown button').text(homepage);
-        $('input[name=homepage-id]').attr('value', pageId);
-    });
+        for(var i=0; i < 16; i++) {
+            newPassword += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        
+        return newPassword;
+    }
+    
     
 });

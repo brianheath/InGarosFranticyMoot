@@ -25,18 +25,20 @@ class AdminController extends BaseController
     public function getRarr()
     {
 //        $role = Role::create([
-//            'name' => '',
-//            'slug' => '',
-//            'description' => '',
-//            'level' => ,
+//            'name' => 'Customer',
+//            'slug' => 'customer',
+//            'description' => 'Paying Customer',
+//            'level' => 2,
 //        ]);
 //        return $role;
         
 //        $user = User::find(1);
-//        $user->attachRole(1);
-//        return $user;
+//        $user->attachRole(2);
+//        return $user->roles;
         
 //        return Auth::user()->is('admin') ? "Yeah, yay!" : "Nooooooooooope.";
+        return Auth::user()->isAdmin() ? "Yeah, yay!" : "Nooooooooooope.";
+//        return auth()->user()->id;
     }
     
     public function getIndex()
@@ -97,7 +99,10 @@ class AdminController extends BaseController
     
     public function getUsers()
     {
-        return view('admin.users', ['users' => User::all()]);
+        return view('admin.users', [
+            'users' => User::all(),
+            'roles' => Role::all(),
+        ]);
     }
     
     
@@ -150,13 +155,28 @@ class AdminController extends BaseController
         $post->title = $request->input('post-title');
         $post->body = $request->input('post-body');
         $post->page_id = $request->input('parent-page-id');
-        $post->user_id = 1; // TODO: Get the user id of the person that is logged in
+        $post->user_id = auth()->user()->id;
         $post->show_date = $show_date;
         $post->show_author = $show_author;
         $post->published = $published;
         $post->save();
         
         return redirect()->action('AdminController@getPosts');
+    }
+    
+    public function putAdduser(Request $request)
+    {
+        // TODO: Add validation
+        
+        $user = User::create([
+            'name' => $request->input('user-name'),
+            'email' => $request->input('user-email'),
+            'password' => bcrypt($request->input('user-password')),
+        ]);
+        
+        $user->attachRole($request->input('user-role-id'));
+        
+        return redirect()->back();
     }
     
     public function updatePage($id, Request $request)
@@ -225,6 +245,7 @@ class AdminController extends BaseController
         $this->options['homepage_id'] = $request->input('homepage-id');
         $this->options['nav_brand'] = $request->input('nav-brand');
         $this->options['full_width'] = $request->input('full-width') !== null ? 1 : 0;
+        $this->options['allow_register'] = $request->input('allow-register') !== null ? 1 : 0;
         
         if ($this->saveOptions())
         {
