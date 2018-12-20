@@ -19,7 +19,7 @@ class AdminController extends BaseController
     {
         parent::__construct();
         
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
     
     public function getRarr()
@@ -37,8 +37,9 @@ class AdminController extends BaseController
 //        return $user->roles;
         
 //        return Auth::user()->is('admin') ? "Yeah, yay!" : "Nooooooooooope.";
-        return Auth::user()->isAdmin() ? "Yeah, yay!" : "Nooooooooooope.";
+//        return Auth::user()->isAdmin() ? "Yeah, yay!" : "Nooooooooooope.";
 //        return auth()->user()->id;
+        return Auth::user() ? "YEPPPERSSS" : "Aww crap.";
     }
     
     public function getIndex()
@@ -117,6 +118,18 @@ class AdminController extends BaseController
             'page' => $page,
         ]);
     }
+    
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        $roles = Role::all();
+        
+        return view('admin.edit_user', [
+            'user' => $user,
+            'roles' => $roles,
+        ]);
+    }
+    
     
     
     /**
@@ -206,6 +219,23 @@ class AdminController extends BaseController
         }
         
         return redirect()->action('AdminController@editPage', ['id' => $id]);
+    }
+    
+    public function updateUser(Request $request)
+    {
+        $user = User::find($request->input('user-id'));
+        $user->name = $request->input('user-name');
+        $user->email = $request->input('user-email');
+        $user->save();
+        
+        $role_ids = array_filter(explode(",", $request->input('role-ids')), 'strlen');
+        $user->detachAllRoles();
+        
+        foreach ($role_ids as $role_id) {
+            $user->attachRole($role_id);
+        }
+        
+        return redirect()->action('AdminController@getUsers');
     }
     
     

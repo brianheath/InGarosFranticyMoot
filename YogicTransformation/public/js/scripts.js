@@ -130,6 +130,17 @@ $(document).ready(function() {
         $(this).closest('.form-group').find('input[type=hidden]').val(itemId);
     });
     
+    /* Edit User */
+    $('.btn-role').click(function(){
+        $(this).toggleClass('btn-primary btn-secondary');
+        
+        setRoles();
+    });
+    
+    /* Set initial role(s) */
+    (function() {
+        setRoles();
+    })();
     
     
     /**
@@ -195,5 +206,15 @@ $(document).ready(function() {
         return newPassword;
     }
     
+    /* Set Value of User's Role(s) */
+    function setRoles() {
+        var roleIDs = "";
+        
+        $('.btn-role.btn-primary').each(function() {
+            roleIDs = roleIDs + $(this).val() + ",";
+        });
+        
+        $('#role_ids').val(roleIDs);
+    }
     
 });
