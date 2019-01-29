@@ -161,6 +161,8 @@ return [
          * Third Party Service Providers...
          */
         Bican\Roles\RolesServiceProvider::class,
+        Way\Generators\GeneratorsServiceProvider::class,
+        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
 
     ],
 

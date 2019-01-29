@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
-use App\Http\Requests;
+//use App\Http\Requests;
+use App\Styling;
 use App\Option;
 use App\Page;
 
 class BaseController extends Controller
 {
-    public $options;
+    public $css;
     public $links;
+    public $options;
     
     public function __construct()
     {
 //        $this->middleware('auth');
+        
+        // Get the CSS for the website
+        $this->css = Styling::latest()->first();
         
         // Get options for the website
         $this->options = Option::latest()->first();

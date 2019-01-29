@@ -6,11 +6,11 @@
 
 <h2>Styling</h2>
 
-<form style="margin: 20px 0 20px 0;" action="{{ url('admin/styling') }}" method="post">
+<form name="site-css" style="margin: 20px 0 20px 0;" action="{{ url('admin/edit_css') }}" method="post">
     {{ csrf_field() }}
     <div class="form-group">
-        <label for=""></label>
-        <input class="form-control" name="" id="" placeholder="" value="{{ '' }}">
+        <label>Site-wide CSS</label>
+        <textarea class="form-control" rows="20" name="site-css" id="site_css">{{ $css['css_body'] }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>

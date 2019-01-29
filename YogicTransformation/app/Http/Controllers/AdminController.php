@@ -12,6 +12,7 @@ use App\Header;
 use App\Page;
 use App\Post;
 use App\User;
+use App\Styling;
 
 class AdminController extends BaseController
 {
@@ -95,7 +96,12 @@ class AdminController extends BaseController
     
     public function getStyling()
     {
-        return view('admin.styling', ['options' => $this->options]);
+        $styling = Styling::latest()->first();
+        
+        return view('admin.styling', [
+            'options' => $this->options,
+            'css' => $styling,
+        ]);
     }
     
     public function getUsers()
@@ -309,6 +315,22 @@ class AdminController extends BaseController
             die('There was a problem saving to the database');
         }
         
+    }
+    
+    public function updateCSS(Request $request)
+    {
+        $styling = new Styling;
+        $styling->css_body = $request->input('site-css');
+        $styling->user_id = auth()->user()->id;
+                
+        if ($styling->save())
+        {
+            return redirect()->back();
+        }
+        else
+        {
+            die('There was a problem saving to the database');
+        }
     }
     
     

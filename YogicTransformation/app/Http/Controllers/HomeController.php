@@ -25,6 +25,7 @@ class HomeController extends BaseController
         }
         
         return view('page', [
+            'css' => $this->css,
             'links' => $this->links,
             'options' => $this->options,
             'page' => $page,
@@ -42,6 +43,7 @@ class HomeController extends BaseController
         }
         
         return view('page', [
+            'css' => $this->css,
             'links' => $this->links,
             'options' => $this->options,
             'page' => $page,

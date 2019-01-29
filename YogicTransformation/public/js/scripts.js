@@ -165,6 +165,24 @@ $(document).ready(function() {
     });
     
     
+    /**
+     * Admin - Styling
+     */
+    
+    $('textarea#site_css').on('keydown', function(event) {
+        if (event.keyCode === 13 && event.ctrlKey) {
+            $('form[name=site-css]').submit();
+        }
+        if (event.keyCode === 9) {
+            event.preventDefault();
+            var position = this.selectionStart;
+            $(this).val($(this).val().substring(0, position)
+                + "\t"
+                + $(this).val().substring(position));
+        }
+    });
+    
+    
     
     /**
      * Admin - General Options
