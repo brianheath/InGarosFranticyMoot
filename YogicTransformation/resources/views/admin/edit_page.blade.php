@@ -30,21 +30,26 @@
         </div>
 
         <label>HTML Code</label>
-        <textarea class="form-control" id="header_code" name="header-code" rows="6">{{ $page->header['markup'] }}</textarea>
+        <textarea class="form-control code-box" id="header_code" name="header-code" rows="6">{{ $page->header['markup'] }}</textarea>
         
         <button type="button" class="btn btn-light" id="update_header">Refresh Header</button>
     </div>
     
-    <div class="form-group" style="margin: 80px 0;">
+    <div class="form-group" style="margin: 60px 0;">
         <h5>Footer</h5>
         <div id="footer_output" style="border: 1px solid #ddd; margin-bottom: 20px;">
             {!! $page->footer['markup'] !!}
         </div>
 
         <label>HTML Code</label>
-        <textarea class="form-control" id="footer_code" name="footer-code" rows="6">{{ $page->footer['markup'] }}</textarea>
+        <textarea class="form-control code-box" id="footer_code" name="footer-code" rows="6">{{ $page->footer['markup'] }}</textarea>
         
         <button type="button" class="btn btn-light" id="update_footer">Refresh Footer</button>
+    </div>
+
+    <div class="form-group" style="margin: 60px 0;">
+        <h5>CSS</h5>
+        <textarea class="form-control code-box" id="page_css" name="page-css" rows="6">{{ $page['css'] }}</textarea>
     </div>
 
     <h5>Other Options</h5>
@@ -63,22 +68,22 @@
         <input type="text" class="form-control" name="page-url" id="page_url" value="{{ $page['url'] }}" autocomplete="new-password" />
     </div>
     
-    <div class="form-group" style="margin-top: 20px;">
+    <div class="form-check" style="margin-top: 20px;">
         <input type="checkbox" class="form-check-input" name="check-navbar" id="check_navbar" {{ $page['navbar'] ? 'checked' : '' }} />
         <label for="check_navbar">Enable the Navigation Bar</label>
     </div>
     
-    <div class="form-group">
+    <div class="form-check">
         <input type="checkbox" class="form-check-input" name="check-publish" id="check_publish" {{ $page['published'] ? 'checked' : '' }} />
         <label for="check_publish">Publish this page</label>
     </div>
     
-    <div class="form-group">
+    <div class="form-check">
         <input type="checkbox" class="form-check-input" name="check-homepage" id="check_homepage" {{ $page['is_homepage'] ? 'checked disabled' : '' }} />
         <label for="check_homepage">Set this as the Homepage</label>
         
         @if ($page['is_homepage'])
-        <small class="form-text text-muted">The site needs a homepage.&nbsp; Edit another page or visit General Options to change this.</small>
+        <small class="form-text text-muted">The site requires a homepage.&nbsp; Edit another page or visit General Options to change this.</small>
         @endif
     </div>
     
@@ -110,16 +115,18 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" style="cursor: default;">{{ $options['nav_brand'] }}</a>
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{{ url('/') }}">Home</a>
+                        <a class="nav-item nav-link">Home</a>
 
                         @foreach ($links as $link)
-                        <a class="nav-item nav-link" href="{{ $link['url'] }}">{{ $link['title'] }}</a>
+                        <a class="nav-item nav-link">{{ $link['title'] }}</a>
                         @endforeach
 
                     </div>
                 </nav>
             </div>
-            <div class="modal-body"></div>
+            <div class="modal-body">
+                <iframe></iframe>
+            </div>
         </div>
     </div>
 </div>

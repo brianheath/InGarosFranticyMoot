@@ -46,9 +46,17 @@ form#new_page button {
     margin-top: 40px;
 }
 
+.modal-backdrop.show {
+    opacity: 0.9;
+}
+
 .modal-fluid {
     width: 90%;
     max-width: 90%;
+}
+
+.modal .modal-navbar a.nav-link {
+    cursor: pointer;
 }
 
 .modal iframe {

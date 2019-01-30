@@ -49,7 +49,7 @@
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="check-send-email" id="check_send_email" />
-                <label for="check_send_email">Email and notify the User that a new account has been set up for them.</label>
+                <label for="check_send_email">Email the user and notify them that a new account has been set up.</label>
             </div>
 
             {{--<div class="form-group">

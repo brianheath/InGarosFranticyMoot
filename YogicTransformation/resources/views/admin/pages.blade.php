@@ -32,16 +32,22 @@
                 <label for="check_navbar">Show Navigation Bar</label>
             </div>
 
-            <div class="form-check">
+            <div class="form-group">
                 <label for="header_code">Header Code</label>
                 <textarea class="form-control" name="header-code" id="header_code" rows="4"></textarea>
                 <small class="form-text text-muted">Leave blank for no header on this page.&nbsp; You can edit this later.</small>
             </div>
 
-            <div class="form-check">
+            <div class="form-group">
                 <label for="footer_code">Footer Code</label>
                 <textarea class="form-control" name="footer-code" id="footer_code" rows="4"></textarea>
                 <small class="form-text text-muted">Leave blank for no footer on this page.&nbsp; You can edit this later.</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="footer_code">CSS</label>
+                <textarea class="form-control code-box" name="page-css" id="page_css" rows="6"></textarea>
+                <small class="form-text text-muted">Change the CSS for this page only.&nbsp; You can edit this later.</small>
             </div>
 
             <button type="submit" class="btn btn-primary">Add this page</button>

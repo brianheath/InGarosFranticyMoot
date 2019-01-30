@@ -89,16 +89,23 @@ $(document).ready(function() {
     });
     
     $('#preview_page_update').on('show.bs.modal', function() {
+        var pageCSS = $('#page_css').val();
         var pageTitle = $('#page_title').val();
         var headerCode = $('textarea#header_code').val();
         var footerCode = $('textarea#footer_code').val();
+        
+        var headCode = '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"><link rel="stylesheet" href="/css/styles.css" />' +
+                '<style>' + pageCSS + '</style>';
+        
         var htmlString = headerCode + 
-                '...<br><br>Your posts will go here<br><br>...' + 
+                '<br><br>...Your posts will go here...<br><br>' + 
                 footerCode;
         
         $('.modal-title').html(pageTitle);
-        $('.modal-body').html(htmlString);
+        $('.modal-body iframe').contents().find('head').html(headCode);
+        $('.modal-body iframe').contents().find('body').html(htmlString);
     });
+    
     
     (function() {
         if ($('#check_navbar').is(':checked')) {
@@ -173,13 +180,6 @@ $(document).ready(function() {
         if (event.keyCode === 13 && event.ctrlKey) {
             $('form[name=site-css]').submit();
         }
-        if (event.keyCode === 9) {
-            event.preventDefault();
-            var position = this.selectionStart;
-            $(this).val($(this).val().substring(0, position)
-                + "\t"
-                + $(this).val().substring(position));
-        }
     });
     
     
@@ -205,6 +205,16 @@ $(document).ready(function() {
 //        $('input[name=homepage-id]').attr('value', pageId);
 //    });
    
+    $('textarea.code-box').on('keydown', function(event) {
+        if (event.keyCode === 9) {
+            event.preventDefault();
+            var position = this.selectionStart;
+            $(this).val($(this).val().substring(0, position)
+                + "\t"
+                + $(this).val().substring(position));
+        }
+    });
+    
     
     
     

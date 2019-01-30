@@ -156,6 +156,7 @@ class AdminController extends BaseController
         $page->navbar = $navbar;
         $page->header_id = $header->id;
         $page->footer_id = $footer->id;
+        $page->css = $request->input('page-css');
         $page->save();
         
         $page->header()->save($header);
@@ -195,6 +196,24 @@ class AdminController extends BaseController
         
         $user->attachRole($request->input('user-role-id'));
         
+        // TODO: Finish this
+        // Send the new user an email with all of their details
+//        if ($request->input('check-send-email') === "on")
+//        {
+//            $to = $request->input('user-name') . " &lt;" . $request->input('user-email') . "&gt;";
+//            $subject = "A new account has been set up for you at " . $this->options->site_name;
+//            $headers = "From: donotereply@" . $this->options->site_url . "\r\n" .
+//                    "X-Mailer: PHP/" . phpversion();
+//            $body = "Hi {$request->input('user-name')},\r\n\r\n<br><br>
+//                %ADMIN% has set up a new account for you at {$this->options->site_name}.<br><br>
+//                To log in, please direct your browser to http://{$this->options->site_url}<br><br>
+//                If you have any questions, you may contact support at %SUPPORT-EMAIL%
+//                ";
+//            mail($to, $subject, $body, $headers);
+//print "{$to}<br>{$subject}<br>{$body}<br>{$headers}";
+//        }
+//die();
+        
         return redirect()->back();
     }
     
@@ -208,6 +227,7 @@ class AdminController extends BaseController
         $page->title = $request->input('page-title');
         $page->url = $request->input('page-url');
         $page->navbar = $navbar;
+        $page->css = $request->input('page-css');
         $page->published = $published;
         $page->save();
         
