@@ -80,7 +80,7 @@
     </div>
     
     <div class="tab-pane fade show active" role="tabpanel" id="user_list">
-        <table class="table table-hover posts">
+        <table class="table table-hover users">
             <thead>
                 <tr>
                     <th>Name</th>

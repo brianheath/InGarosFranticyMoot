@@ -33,7 +33,10 @@ table.pages tr td {
     cursor: default;
 }
 
-table.pages i.fas {
+.modal .modal-navbar a.nav-link,
+table.pages i.fas,
+table.posts i.fas,
+table.users i.fas {
     cursor: pointer;
 }
 
@@ -53,10 +56,6 @@ form#new_page button {
 .modal-fluid {
     width: 90%;
     max-width: 90%;
-}
-
-.modal .modal-navbar a.nav-link {
-    cursor: pointer;
 }
 
 .modal iframe {
