@@ -66,6 +66,20 @@ return [
             'engine' => null,
         ],
 
+        'pickled_mysql' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'pickled_bchcom'),
+            'username' => env('DB_USERNAME', 'pickled_8gs37456th'),
+            'password' => env('DB_PASSWORD', '!UktCl1yWy@ysniS8Yj27*Hs'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
