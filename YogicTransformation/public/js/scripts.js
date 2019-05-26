@@ -188,23 +188,17 @@ $(document).ready(function() {
      * Admin - General Options
      */
     
-    /* Set Homepage Button */
-    (function() {
-        var itemId = $('input[name=homepage-id]').attr('value');
+    /* Set Default Dropdown Value */
+    if ($('.dropdown').length) {
+        var itemId = $('input[name=dropdown-value]').attr('value');
         var label = $('a.dropdown-item[item-id=' + itemId + ']').text();
         
-        $('.homepage-dropdown button.dropdown-toggle').text(label);
-    })();
+        if (itemId) {
+            $('.dropdown button.dropdown-toggle').text(label);
+        }
+    }
     
-//    /* Dropdown */
-//    $('.homepage-dropdown .dropdown-item').click(function() {
-//        var homepage = $(this).text();
-//        var pageId = $(this).attr('page');
-//        
-//        $('.dropdown button').text(homepage);
-//        $('input[name=homepage-id]').attr('value', pageId);
-//    });
-   
+    /* An attempt at allowing the tab key to insert a tab */
     $('textarea.code-box').on('keydown', function(event) {
         if (event.keyCode === 9) {
             event.preventDefault();

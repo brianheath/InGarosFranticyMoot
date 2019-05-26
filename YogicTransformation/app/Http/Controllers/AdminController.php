@@ -125,6 +125,17 @@ class AdminController extends BaseController
         ]);
     }
     
+    public function editPost($id)
+    {
+        $post = Post::find($id);
+        $post['author'] = User::find($post['user_id']);
+        $post['pages'] = Page::get(['id', 'title']);
+        
+        return view('admin.edit_post', [
+            'post' => $post,
+        ]);
+    }
+    
     public function editUser($id)
     {
         $user = User::find($id);
@@ -247,6 +258,25 @@ class AdminController extends BaseController
         return redirect()->action('AdminController@editPage', ['id' => $id]);
     }
     
+    public function updatePost($id, Request $request)
+    {
+        $show_date = $request->input('post-showdate') !== null ? 1 : 0;
+        $published = $request->input('post-publish') !== null ? 1 : 0;
+        $show_author = $request->input('post-showauthor') !== null ? 1 : 0;
+        $page_id = $request->input('dropdown-value');
+        
+        $post = Post::find($id);
+        $post->page_id = $page_id;
+        $post->title = $request->input('post-title');
+        $post->body = $request->input('post-body');
+        $post->show_date = $show_date;
+        $post->show_author = $show_author;
+        $post->published = $published;
+        $post->save();
+        
+        return redirect()->action('AdminController@editPost', ['id' => $id]);
+    }
+    
     public function updateUser(Request $request)
     {
         $user = User::find($request->input('user-id'));
@@ -270,35 +300,35 @@ class AdminController extends BaseController
      * POST methods
      */
     
-    public function postComponents(Request $request)
-    {
-        // Getting values implicitly to exclude any extras
-        $navBar = $request->input('checkNavBar');
-        $header = $request->input('checkHeader');
-        $footer = $request->input('checkFooter');
-        
-        $this->options['navbar'] = isset($navBar) ? 1 : 0;
-        $this->options['header'] = isset($header) ? 1 : 0;
-        $this->options['footer'] = isset($footer) ? 1 : 0;
-        
-        // TODO:  Validate the data?
-        Storage::disk('components')->put('navbar.blade.php', $request->input('navbarCode'));
-        Storage::disk('components')->put('header.blade.php', $request->input('headerCode'));
-        Storage::disk('components')->put('footer.blade.php', $request->input('footerCode'));
-        
-        if ($this->saveOptions())
-        {
-            return view('admin.components', ['options' => $this->options]);
-        }
-        else
-        {
-            die('There was a problem saving to the database');
-        }
-    }
+//    public function postComponents(Request $request)
+//    {
+//        // Getting values implicitly to exclude any extras
+//        $navBar = $request->input('checkNavBar');
+//        $header = $request->input('checkHeader');
+//        $footer = $request->input('checkFooter');
+//        
+//        $this->options['navbar'] = isset($navBar) ? 1 : 0;
+//        $this->options['header'] = isset($header) ? 1 : 0;
+//        $this->options['footer'] = isset($footer) ? 1 : 0;
+//        
+//        // TODO:  Validate the data?
+//        Storage::disk('components')->put('navbar.blade.php', $request->input('navbarCode'));
+//        Storage::disk('components')->put('header.blade.php', $request->input('headerCode'));
+//        Storage::disk('components')->put('footer.blade.php', $request->input('footerCode'));
+//        
+//        if ($this->saveOptions())
+//        {
+//            return view('admin.components', ['options' => $this->options]);
+//        }
+//        else
+//        {
+//            die('There was a problem saving to the database');
+//        }
+//    }
     
     public function postGeneralOptions(Request $request)
     {
-        $this->options['homepage_id'] = $request->input('homepage-id');
+        $this->options['homepage_id'] = $request->input('dropdown-value');
         $this->options['nav_brand'] = $request->input('nav-brand');
         $this->options['full_width'] = $request->input('full-width') !== null ? 1 : 0;
         $this->options['allow_register'] = $request->input('allow-register') !== null ? 1 : 0;

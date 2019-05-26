@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-default navbar-dark bg-dark">
-        <a class="navbar-text" href="{{ url('/') }}">Home, Jeeves</a>
+        <a class="navbar-text" href="{{ url('/') }}" target="newcmswindow">Show main site</a>
         <div>
             <a class="btn btn-outline-light" role="button" href="/logout">Logout</a>
         </div>

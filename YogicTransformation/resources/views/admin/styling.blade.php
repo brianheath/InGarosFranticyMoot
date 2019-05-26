@@ -6,7 +6,7 @@
 
 <h2>Styling</h2>
 
-<form name="site-css" style="margin: 20px 0 20px 0;" action="{{ url('admin/edit_css') }}" method="post">
+<form name="site-css" style="margin: 20px 0 20px 0;" action="{{ url('admin/update_css') }}" method="post">
     {{ csrf_field() }}
     <div class="form-group">
         <label>Site-wide CSS</label>

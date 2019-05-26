@@ -22,7 +22,7 @@
                 @endforeach
             </div>
         </div>
-        <input type="hidden" name="homepage-id" value="{{ $options['homepage_id'] }}" />
+        <input type="hidden" name="dropdown-value" value="{{ $options['homepage_id'] }}" />
     </div>
 
     <div class="form-group" style="margin-top: 40px;">

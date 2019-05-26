@@ -21,9 +21,10 @@ Route::group(['middleware' => 'role:admin'], function() {
     Route::delete('/admin/{type}/{id}', 'AdminController@destroy');
     
     Route::put('/admin/page/{id}', 'AdminController@updatePage');
+    Route::put('/admin/post/{id}', 'AdminController@updatePost');
     Route::put('/admin/user/{id}', 'AdminController@updateUser');
 
-    Route::post('/admin/edit_css', 'AdminController@updateCSS');
+    Route::post('/admin/update_css', 'AdminController@updateCSS');
     
     Route::get('/admin/edit_page/{id}', 'AdminController@editPage');
     Route::get('/admin/edit_post/{id}', 'AdminController@editPost');

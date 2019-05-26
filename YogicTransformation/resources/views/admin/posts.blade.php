@@ -31,7 +31,7 @@
                     <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
                         Select the page for the post
                     </button>
-                    <small class="form-text text-muted">Posts will be shown in ascending order by date</small>
+                    <small class="form-text text-muted">Pages will be shown in ascending order by date</small>
                     <div class="dropdown-menu">
                         @foreach ($pages as $page)
                         <a class="dropdown-item" href="#" item-id="{{ $page['id'] }}">"{{ $page['title'] }}"</a>
