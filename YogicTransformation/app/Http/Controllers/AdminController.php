@@ -235,8 +235,9 @@ class AdminController extends BaseController
         $homepage_id = $request->input('check-homepage') !== null ? $id : null;
         
         $page = Page::find($id);
-        $page->title = $request->input('page-title');
         $page->url = $request->input('page-url');
+        $page->title = $request->input('page-title');
+        $page->head = $request->input('page-head');
         $page->navbar = $navbar;
         $page->css = $request->input('page-css');
         $page->published = $published;

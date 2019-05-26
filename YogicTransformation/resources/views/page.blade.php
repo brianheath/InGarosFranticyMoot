@@ -1,6 +1,7 @@
 @extends('layouts.page')
 
 @section('title', $page['title'])
+@section('head', $page['head'])
 
 @section('navbar')
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

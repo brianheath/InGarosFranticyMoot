@@ -48,6 +48,11 @@
     </div>
 
     <div class="form-group" style="margin: 60px 0;">
+        <h5>Head data</h5>
+        <textarea class="form-control code-box" id="page_head" name="page-head" rows="6">{{ $page['head'] }}</textarea>
+    </div>
+
+    <div class="form-group" style="margin: 60px 0;">
         <h5>CSS</h5>
         <textarea class="form-control code-box" id="page_css" name="page-css" rows="6">{{ $page['css'] }}</textarea>
     </div>
