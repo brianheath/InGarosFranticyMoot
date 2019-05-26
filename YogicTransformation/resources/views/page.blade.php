@@ -17,8 +17,6 @@
 </nav>
 @endsection
 
-<style>{{ $page['css'] }}</style>
-
 @section('content')
 @foreach ($page->posts as $post)
 @if ($post['published'])

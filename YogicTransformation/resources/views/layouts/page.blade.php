@@ -15,7 +15,8 @@
     {!! $page['head'] !!}
     
     <style>
-        {!! $css['css_body'] !!}
+{!! $css['css_body'] !!}
+{!! $page['css'] !!}
     </style>
 </head>
 
