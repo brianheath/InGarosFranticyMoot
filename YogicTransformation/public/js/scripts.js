@@ -231,6 +231,9 @@ $(document).ready(function() {
             $(this).val($(this).val().substring(0, position)
                 + "\t"
                 + $(this).val().substring(position));
+                
+            // return the cursor to the position + the tab
+            this.selectionStart = this.selectionEnd = position + 1;
         }
     });
     
