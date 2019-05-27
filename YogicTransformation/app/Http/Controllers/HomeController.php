@@ -51,6 +51,8 @@ class HomeController extends BaseController
             $neworder[$post->id] = $post;
         }
         
+        usort($neworder, $this->arrSortObjsByKey('id'));
+
         return $neworder;
     }
     
@@ -79,4 +81,30 @@ class HomeController extends BaseController
         
         return $this->showPage($page);
     }
+    
+    
+    /**
+     * Sort a multi-domensional array of objects by key value
+     * Usage: usort($array, arrSortObjsByKey('VALUE_TO_SORT_BY'));
+     * Expects an array of objects. 
+     *
+     * @param String    $key  The name of the parameter to sort by
+     * @param String 	$order the sort order
+     * @return A function to compare using usort
+     */ 
+    function arrSortObjsByKey($key, $order = 'DESC') {
+	return function($a, $b) use ($key, $order) {
+            // Swap order if necessary
+            if ($order == 'DESC') {
+                    list($a, $b) = array($b, $a);
+            } 
+            // Check data type
+            if (is_numeric($a->$key)) {
+                    return $a->$key - $b->$key; // compare numeric
+            } else {
+                    return strnatcasecmp($a->$key, $b->$key); // compare string
+            }
+	};
+    }
+    
 }
