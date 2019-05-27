@@ -20,8 +20,8 @@
 @section('content')
 @foreach ($page->posts as $post)
 @if ($post['published'])
-    <div class="container-fluid">
-        <h1>{{ $post['title'] }}</h1>
+    <div class="post-section container-fluid">
+        <h1 class="post-title">{{ $post['title'] }}</h1>
         
         @if ($post['show_author'])
         <h4>by {{ $post->user['name'] }}</h4>
