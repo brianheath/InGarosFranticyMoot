@@ -15,14 +15,28 @@ class HomeController extends BaseController
                 ? 'container-fluid' : 'container';
     }
     
-    public function index()
+    public function showPage($page)
     {
-        $page = Page::find($this->options['homepage_id']);
-        
         if (!$page)
         {
             abort(404);
         }
+        
+        // Replace keywords with their corresponding values
+        $search = [
+            "@@site_name",
+            "@@site_tagline",
+            "@@site_domain",
+        ];
+        
+        $replace = [
+            $this->options['site_name'],
+            $this->options['site_tagline'],
+            $this->options['site_url'],
+        ];
+        
+        $page->header->markup = str_replace($search, $replace, $page->header->markup);
+        $page->footer->markup = str_replace($search, $replace, $page->footer->markup);
         
         return view('page', [
             'css' => $this->css,
@@ -32,22 +46,17 @@ class HomeController extends BaseController
         ]);
     }
     
-    public function page($page_id) {
+    public function index()
+    {
+        return $this->showPage(Page::find($this->options['homepage_id']));
+    }
+    
+    public function page($page_id)
+    {
         $page = Page::where('url', $page_id)
                 ->where('published', 1)
                 ->first();
         
-        if (!$page)
-        {
-            abort(404);
-        }
-        
-        return view('page', [
-            'css' => $this->css,
-            'links' => $this->links,
-            'options' => $this->options,
-            'page' => $page,
-        ]);
-        
+        return $this->showPage($page);
     }
 }
