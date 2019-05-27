@@ -49,7 +49,7 @@
     
     <div class="form-group">
         <label>Body</label>
-        <textarea class="form-control" id="post_body" name="post-body" rows="20">{{ $post->body }}</textarea>
+        <textarea class="form-control code-box" id="post_body" name="post-body" rows="20">{{ $post->body }}</textarea>
     </div>
 
     <div class="form-check">
