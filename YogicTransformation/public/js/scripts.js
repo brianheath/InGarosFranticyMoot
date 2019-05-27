@@ -1,6 +1,10 @@
 $(document).ready(function() {
     
+    /**
+     * Website functions
+     */
     
+    /* Make the header background scroll all pretty-like */
     $window = $(window);
     $('header[data-type="background"], section[data-type="background"]').each(function(){
 		
@@ -237,6 +241,11 @@ $(document).ready(function() {
         }
     });
     
+    /* Resize code-box textareas to fit the content */
+    $("textarea.code-box").each(function() {
+        autoResize(this);
+    });
+    
     
     
     
@@ -265,6 +274,11 @@ $(document).ready(function() {
         });
         
         $('#role_ids').val(roleIDs);
+    }
+   
+    /* Auto resize this element (usually a textarea) */
+    function autoResize(target) {
+        target.style.height = (target.scrollHeight + 10) + 'px';
     }
     
 });
