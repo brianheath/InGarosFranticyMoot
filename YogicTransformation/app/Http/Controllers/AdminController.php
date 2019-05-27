@@ -75,7 +75,7 @@ class AdminController extends BaseController
     
     public function getPosts()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->get();
         $pages = Page::all(['id', 'title']);
         
         return view('admin.posts', [
