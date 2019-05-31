@@ -234,14 +234,14 @@ $(document).ready(function() {
      *  This will hide the 'Refresh Header/Footer' buttons and toggle the 
      *  caret icons from down to right.
      **/
-    $('.toggle-code').click(function() {
+//    $('.toggle-code').click(function() {
 //        var target = $(this).data('target');
 //        
 //        $(target).slideToggle();
 //        $(target).next('button').toggle();
 //        $(this).prev('i.fas').toggleClass('fa-caret-right');
 //        $(this).prev('i.fas').toggleClass('fa-caret-down');
-    });
+//    });
     
     /* An attempt at allowing the tab key to insert a tab */
     $('textarea.code-box').on('keydown', function(event) {
