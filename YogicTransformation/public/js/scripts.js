@@ -259,7 +259,6 @@ $(document).ready(function() {
     
     /* Resize code-box textareas to fit the content */
     $('textarea.code-box').each(function() {
-        alret('Pause before resizing...');
         autoResize(this);
     });
     
@@ -296,6 +295,7 @@ $(document).ready(function() {
     /* Auto resize this element (usually a textarea) */
     function autoResize(target) {
         target.style.height = (target.scrollHeight + 10) + 'px';
+        console.info(target.style.height);
     }
     
 });
