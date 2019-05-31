@@ -1,0 +1,99 @@
+/* 
+    Created on : May 25, 2019, 10:20:58 PM
+    Author     : Brian Heath
+*/
+
+// Color variables
+@admin-menu-dkgrey: #e0dee0;
+
+// Cursor variables
+@cursor-pointer: pointer;
+
+// Dimension variables
+@button-margin-top: 40px;
+@width-90: 90%;
+@width-100: 100%;
+
+.dropdown + button[type=submit],
+form#new_page button {
+
+    margin-top: @button-margin-top;
+}
+
+body {
+    .container-fluid {
+        padding-left: 0;
+            padding-right: 0;
+
+        div.row.no-gutters {
+            div.col-sm-auto {
+                width: 220px;
+            }
+        }
+    }
+}
+
+.navbar.flex-column {
+    padding: 0;
+    a.nav-link {
+        background-color: #f0eef0;
+        border: 1px solid @admin-menu-dkgrey;
+        margin: 1px 0;
+        padding: .8rem 2rem;
+        width: @width-100;
+        &:hover {
+            background-color: @admin-menu-dkgrey;
+        }
+        i.fas {
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+    }
+}
+
+.modal {
+    iframe {
+        border: none;
+        height: 800px;
+        overflow: hidden;
+        width: @width-100;
+    }
+    
+    .modal-backdrop.show {
+        opacity: 0.9;
+    }
+    
+    .modal-navbar {
+        a.nav-link {
+            cursor: @cursor-pointer;
+        }
+    }
+
+    .modal-fluid {
+        max-width: @width-90;
+        width: @width-90;
+    }
+}
+
+table.pages {
+    tr {
+        td {
+            cursor: default;
+        }
+    }
+    i.fas {
+        cursor: @cursor-pointer;
+    }
+}
+
+table.posts i.fas,
+table.users i.fas {
+    cursor: pointer;
+}
+
+
+h5,
+label[for="footer_code"],
+label[for="header_code"] {
+    margin-top: 20px;
+}

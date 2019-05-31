@@ -46,10 +46,6 @@ label[for="footer_code"] {
     margin-top: 20px;
 }
 
-form#new_page button {
-    margin-top: 40px;
-}
-
 .modal-backdrop.show {
     opacity: 0.9;
 }
@@ -72,6 +68,3 @@ h5 {
     margin-top: 20px;
 }
 
-.dropdown + button[type=submit] {
-    margin-top: 40px;
-}
