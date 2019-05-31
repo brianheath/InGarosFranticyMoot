@@ -29,7 +29,8 @@
             {!! $page->header['markup'] !!}
         </div>
 
-        <label>HTML Code</label>
+        <i class="fas fa-caret-down"></i>
+        <label class="toggle-code" data-target="#header_code">HTML Code</label>
         <textarea class="form-control code-box" id="header_code" name="header-code" rows="6">{{ $page->header['markup'] }}</textarea>
         
         <button type="button" class="btn btn-light" id="update_header">Refresh Header</button>
@@ -41,7 +42,8 @@
             {!! $page->footer['markup'] !!}
         </div>
 
-        <label>HTML Code</label>
+        <i class="fas fa-caret-down"></i>
+        <label class="toggle-code" data-target="#footer_code">HTML Code</label>
         <textarea class="form-control code-box" id="footer_code" name="footer-code" rows="6">{{ $page->footer['markup'] }}</textarea>
         
         <button type="button" class="btn btn-light" id="update_footer">Refresh Footer</button>
@@ -54,6 +56,8 @@
 
     <div class="form-group" style="margin: 60px 0;">
         <h5>CSS</h5>
+        <i class="fas fa-caret-down"></i>
+        <label class="toggle-code" data-target="#page_css">HTML Code</label>
         <textarea class="form-control code-box" id="page_css" name="page-css" rows="6">{{ $page['css'] }}</textarea>
     </div>
 

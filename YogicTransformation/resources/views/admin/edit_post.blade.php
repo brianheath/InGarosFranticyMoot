@@ -48,7 +48,8 @@
 
     
     <div class="form-group">
-        <label>Body</label>
+        <i class="fas fa-caret-down"></i>
+        <label class="toggle-code" data-target="#post_body">Body</label>
         <textarea class="form-control code-box" id="post_body" name="post-body" rows="20">{{ $post->body }}</textarea>
     </div>
 
