@@ -229,6 +229,11 @@ $(document).ready(function() {
     
     
     
+    /* Resize code-box textareas to fit the content */
+    $('textarea.code-box').each(function() {
+//        autoResize(this);
+    });
+    
     /**
      *  Click to toggle targets, typically textareas.
      *  This will hide the 'Refresh Header/Footer' buttons and toggle the 
@@ -255,11 +260,6 @@ $(document).ready(function() {
             // return the cursor to the position + the tab
             this.selectionStart = this.selectionEnd = position + 1;
         }
-    });
-    
-    /* Resize code-box textareas to fit the content */
-    $("textarea.code-box").each(function() {
-        autoResize(this);
     });
     
     
