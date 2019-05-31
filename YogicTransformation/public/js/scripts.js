@@ -298,6 +298,7 @@ $(document).ready(function() {
 //        $(target).height(target.scrollHeight);
 //        console.info("$height: " + $(target).height());
 //        console.info("style.height: " + target.style.height);
+        alert("innerHTML: " + target.innerHTML);
         console.info("scrollHeight: " + target.scrollHeight);
         console.info("jQuery scrollHeight: " + $(target)[0].scrollHeight);
     }
