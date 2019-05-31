@@ -234,14 +234,14 @@ $(document).ready(function() {
      *  This will hide the 'Refresh Header/Footer' buttons and toggle the 
      *  caret icons from down to right.
      **/
-//    $('.toggle-code').click(function() {
-//        var target = $(this).data('target');
-//        
-//        $(target).slideToggle();
-//        $(target).next('button').toggle();
-//        $(this).prev('i.fas').toggleClass('fa-caret-right');
-//        $(this).prev('i.fas').toggleClass('fa-caret-down');
-//    });
+    $('.toggle-code').click(function() {
+        var target = $(this).data('target');
+        
+        $(target).slideToggle();
+        $(target).next('button').toggle();
+        $(this).prev('i.fas').toggleClass('fa-caret-right');
+        $(this).prev('i.fas').toggleClass('fa-caret-down');
+    });
     
     /* An attempt at allowing the tab key to insert a tab */
     $('textarea.code-box').on('keydown', function(event) {
@@ -259,7 +259,9 @@ $(document).ready(function() {
     
     /* Resize code-box textareas to fit the content */
     $('textarea.code-box').each(function() {
-        autoResize(this);
+        if (this.scrollHeight > this.clientHeight) {
+            autoResize(this);
+        }
     });
     
     
@@ -295,12 +297,6 @@ $(document).ready(function() {
     /* Auto resize this element (usually a textarea) */
     function autoResize(target) {
         target.style.height = (target.scrollHeight + 15) + 'px';
-//        $(target).height(target.scrollHeight);
-//        console.info("$height: " + $(target).height());
-//        console.info("style.height: " + target.style.height);
-//        alert("innerHTML: " + target.innerHTML);
-//        console.info("scrollHeight: " + target.scrollHeight);
-//        console.info("$scrollHeight: " + $(target)[0].scrollHeight);
     }
     
 });
