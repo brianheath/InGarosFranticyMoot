@@ -294,8 +294,11 @@ $(document).ready(function() {
    
     /* Auto resize this element (usually a textarea) */
     function autoResize(target) {
-        target.style.height = (target.scrollHeight + 10) + 'px';
-        console.info(target.scrollHeight);
+//        target.style.height = (target.scrollHeight + 10) + 'px';
+//        $(target).height(target.scrollHeight);
+        console.info("$height: " + $(target).height());
+        console.info("style.height: " + target.style.height);
+        console.info("scrollheight: " + target.scrollHeight);
     }
     
 });
