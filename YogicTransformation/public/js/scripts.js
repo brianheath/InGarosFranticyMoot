@@ -231,7 +231,7 @@ $(document).ready(function() {
     
     /* Resize code-box textareas to fit the content */
     $('textarea.code-box').each(function() {
-//        autoResize(this);
+        autoResize(this);
     });
     
     /**
