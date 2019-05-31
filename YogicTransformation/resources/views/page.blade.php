@@ -4,7 +4,7 @@
 @section('head', $page['head'])
 
 @section('navbar')
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" style="cursor: default;">{{ $options['nav_brand'] }}</a>
     <div class="navbar-nav">
         <a class="nav-item nav-link" href="{{ url('/') }}">Home</a>
