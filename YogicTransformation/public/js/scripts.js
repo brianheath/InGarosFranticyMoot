@@ -296,9 +296,10 @@ $(document).ready(function() {
     function autoResize(target) {
 //        target.style.height = (target.scrollHeight + 10) + 'px';
 //        $(target).height(target.scrollHeight);
-        console.info("$height: " + $(target).height());
-        console.info("style.height: " + target.style.height);
-        console.info("scrollheight: " + target.scrollHeight);
+//        console.info("$height: " + $(target).height());
+//        console.info("style.height: " + target.style.height);
+        console.info("scrollHeight: " + target.scrollHeight);
+        console.info("jQuery scrollHeight: " + $(target)[0].scrollHeight);
     }
     
 });
