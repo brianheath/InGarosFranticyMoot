@@ -234,7 +234,7 @@ $(document).ready(function() {
      *  This will hide the 'Refresh Header/Footer' buttons and toggle the 
      *  caret icons from down to right.
      **/
-    $('.toggle-code').click(function() {
+    $('.toggle-code').on('click', function() {
         var target = $(this).data('target');
         
         $(target).slideToggle();
@@ -295,7 +295,7 @@ $(document).ready(function() {
     /* Auto resize this element (usually a textarea) */
     function autoResize(target) {
         target.style.height = (target.scrollHeight + 10) + 'px';
-        console.info(target.style.height);
+        console.info(target.scrollHeight);
     }
     
 });
