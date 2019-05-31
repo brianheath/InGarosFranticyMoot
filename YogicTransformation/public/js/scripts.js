@@ -294,13 +294,13 @@ $(document).ready(function() {
    
     /* Auto resize this element (usually a textarea) */
     function autoResize(target) {
-//        target.style.height = (target.scrollHeight + 10) + 'px';
+        target.style.height = (target.scrollHeight + 15) + 'px';
 //        $(target).height(target.scrollHeight);
 //        console.info("$height: " + $(target).height());
 //        console.info("style.height: " + target.style.height);
 //        alert("innerHTML: " + target.innerHTML);
-        console.info("scrollHeight: " + target.scrollHeight);
-        console.info("jQuery scrollHeight: " + $(target)[0].scrollHeight);
+//        console.info("scrollHeight: " + target.scrollHeight);
+//        console.info("$scrollHeight: " + $(target)[0].scrollHeight);
     }
     
 });
