@@ -24,10 +24,13 @@ $(document).ready(function() {
         });
     });
     
-    $('.lightbox-gallery a').lightbox({
-        margin: 100
+    $('.lightbox-gallery').each(function() {
+        $('.lightbox-gallery a').lightbox({
+            margin: 100
+        });
+        
+        $('.lightbox-gallery.autostart a:first').click();
     });
-    $('.lightbox-gallery.autostart a:first').click();
     
     
     
