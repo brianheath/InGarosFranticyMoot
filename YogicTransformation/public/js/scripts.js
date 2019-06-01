@@ -24,7 +24,10 @@ $(document).ready(function() {
         });
     });
     
-    
+    $('.lightbox-gallery a').lightbox({
+        margin: 100
+    });
+    $('.lightbox-gallery.autostart a:first').click();
     
     
     
