@@ -40,6 +40,7 @@
                 $('body').append(
                     '<div id="' + id + '" class="lightbox" style="display:none;">' +
 //                    '<a href="#" class="lightbox__close lightbox__button"></a>' +
+                    '<a href="/" class="lightbox__home">Return Home</a>' +
                     '<a href="#" class="lightbox__nav lightbox__nav--prev lightbox__button"></a>' +
                     '<a href="#" class="lightbox__nav lightbox__nav--next lightbox__button"></a>' +
                     '<div href="#" class="lightbox__caption"><p></p></div>' +
